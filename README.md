@@ -24,13 +24,13 @@ val consent = GDPRMessage(this)
              //load ad here
             }
 ````
-**In-app updates**
+**How to use In-app updates**
 ````
  updateApp(UpdateType.Force){ onCancel ->
             finishAffinity()
         }
 ````
-**In-app updates with remote config**
+**How to use In-app updates with remote config**
 ````
 // control in-app update with remote config you just have to pass remote config json as a string
 
