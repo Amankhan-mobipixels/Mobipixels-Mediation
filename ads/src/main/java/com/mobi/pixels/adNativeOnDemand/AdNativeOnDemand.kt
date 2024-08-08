@@ -20,7 +20,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.admanager.AdManagerAdRequest
 import com.google.android.gms.ads.nativead.NativeAd
 import com.google.android.gms.ads.nativead.NativeAdView
-import com.mobi.pixels.initialize.Ads
+import com.mobi.pixels.initialize.AdsMediation
 import com.mobi.pixels.isOnline
 import com.mobi.pixels.shimmerNative
 
@@ -63,7 +63,7 @@ class AdNativeOnDemand(
             adLoadListener?.onAdFailedToLoad("Internet connection not detected. Please check your connection and try again.")
             return
         }
-        if (!Ads.IsAdsAllowed) {
+        if (!AdsMediation.IsAdsAllowed) {
             nativeAdContainer.visibility = View.GONE
             adLoadListener?.onAdFailedToLoad("Ads disabled by developer")
             return

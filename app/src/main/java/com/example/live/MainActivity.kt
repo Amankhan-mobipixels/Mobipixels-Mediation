@@ -13,9 +13,8 @@ import com.mobi.pixels.adNativeOnDemand.AdNativeOnDemandListeners
 import com.mobi.pixels.adNativeOnDemand.loadOnDemandNativeAd
 import com.mobi.pixels.enums.NativeAdIcon
 import com.mobi.pixels.enums.NativeAdType
-import com.mobi.pixels.enums.UpdateType
 import com.mobi.pixels.firebase.InitializeRemoteConfig
-import com.mobi.pixels.initialize.Ads
+import com.mobi.pixels.initialize.AdsMediation
 import com.mobi.pixels.updateAppWithRemoteConfig
 
 class MainActivity : AppCompatActivity(){
@@ -26,7 +25,7 @@ class MainActivity : AppCompatActivity(){
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        Ads.initialize(this,true)
+        AdsMediation.initialize(this,true)
 
         InitializeRemoteConfig{
 //            val isInterEnabled = Firebase.remoteConfig.getBoolean("splashAd")

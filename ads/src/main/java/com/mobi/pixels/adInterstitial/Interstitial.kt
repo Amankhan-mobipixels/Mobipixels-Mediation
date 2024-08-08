@@ -6,7 +6,7 @@ import com.google.android.gms.ads.FullScreenContentCallback
 import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.interstitial.InterstitialAd
 import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback
-import com.mobi.pixels.initialize.Ads
+import com.mobi.pixels.initialize.AdsMediation
 import com.mobi.pixels.isOnline
 
 object Interstitial {
@@ -24,7 +24,7 @@ object Interstitial {
                 loadListener?.onFailedToLoad("Internet connection not detected. Please check your connection and try again.")
                 return
             }
-            if (!Ads.IsAdsAllowed) {
+            if (!AdsMediation.IsAdsAllowed) {
                 loadListener?.onFailedToLoad("Ads disabled by developer")
                 return
             }

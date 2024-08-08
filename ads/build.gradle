@@ -61,4 +61,11 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-process:2.8.4'
     implementation("com.google.android.play:app-update-ktx:2.1.0")
     implementation 'com.google.code.gson:gson:2.11.0'
+
+    //mediation networks
+    implementation("com.google.ads.mediation:applovin:12.6.0.0") // applovin
+    implementation("com.google.ads.mediation:vungle:7.4.0.0")  //Liftoff
+    implementation("com.google.ads.mediation:facebook:6.17.0.0") // meta
+    implementation("com.google.ads.mediation:mintegral:16.8.11.0") //mintegral
+    implementation("com.google.ads.mediation:pangle:6.1.0.7.0") //Pangle
 }

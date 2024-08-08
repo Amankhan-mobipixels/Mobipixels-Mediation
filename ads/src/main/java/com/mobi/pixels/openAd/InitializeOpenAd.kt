@@ -18,8 +18,7 @@ import com.google.android.gms.ads.appopen.AppOpenAd
 import com.google.android.gms.ads.appopen.AppOpenAd.AppOpenAdLoadCallback
 import com.mobi.pixels.adInterstitial.Interstitial
 import com.mobi.pixels.adRewarded.Rewarded
-import com.mobi.pixels.initialize.Ads
-import com.mobi.pixels.isOnline
+import com.mobi.pixels.initialize.AdsMediation
 import java.util.Date
 
 class InitializeOpenAd(val context: Context, val adUnit:String, val screenDoNotWantToShow:String? = null) : Application.ActivityLifecycleCallbacks,
@@ -70,7 +69,7 @@ class InitializeOpenAd(val context: Context, val adUnit:String, val screenDoNotW
 
     private fun showAdIfAvailable() {
         Log.d("gsfgdf",context::class.java.simpleName)
-        if (Ads.IsAdsAllowed && !isShowingOpenAd && isAdAvailable() && currentActivity!=null && !Interstitial.isShowingInterstitialAd && !Rewarded.isShowingRewardedAd) {
+        if (AdsMediation.IsAdsAllowed && !isShowingOpenAd && isAdAvailable() && currentActivity!=null && !Interstitial.isShowingInterstitialAd && !Rewarded.isShowingRewardedAd) {
             val fullScreenContentCallback = object : FullScreenContentCallback() {
                 override fun onAdDismissedFullScreenContent() {
                     super.onAdDismissedFullScreenContent()

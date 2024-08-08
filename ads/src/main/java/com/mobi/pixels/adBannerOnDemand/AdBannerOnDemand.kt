@@ -13,7 +13,7 @@ import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdSize
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.LoadAdError
-import com.mobi.pixels.initialize.Ads
+import com.mobi.pixels.initialize.AdsMediation
 import com.mobi.pixels.isOnline
 import com.mobi.pixels.shimmerBanner
 
@@ -52,7 +52,7 @@ class AdBannerOnDemand(
             adLoadListener?.onAdFailedToLoad("Internet connection not detected. Please check your connection and try again.")
             return null
         }
-        if (!Ads.IsAdsAllowed) {
+        if (!AdsMediation.IsAdsAllowed) {
             bannerAdContainer.visibility = View.GONE
             adLoadListener?.onAdFailedToLoad("Ads disabled by developer")
             return null

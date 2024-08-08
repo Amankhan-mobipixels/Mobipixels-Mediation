@@ -8,7 +8,7 @@ import com.google.android.gms.ads.LoadAdError
 import com.google.android.gms.ads.OnUserEarnedRewardListener
 import com.google.android.gms.ads.rewarded.RewardedAd
 import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
-import com.mobi.pixels.initialize.Ads
+import com.mobi.pixels.initialize.AdsMediation
 import com.mobi.pixels.isOnline
 
 object Rewarded {
@@ -26,7 +26,7 @@ object Rewarded {
             loadListener?.onFailedToLoad("Internet connection not detected. Please check your connection and try again.")
             return
         }
-        if (!Ads.IsAdsAllowed) {
+        if (!AdsMediation.IsAdsAllowed) {
             loadListener?.onFailedToLoad("Ads disabled by developer")
             return
         }
