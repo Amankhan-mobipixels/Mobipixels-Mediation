@@ -121,7 +121,7 @@ fragment:  requireActivity().inAppReview()
 ````
 **How to use ADS Mediation**
 
-AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
+       AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
 
       // Open App Ad
         InitializeOpenAd(this@MyApplication,unitId,"Splash")  //splash is a screen name means openAd will not be shown on splash screen
