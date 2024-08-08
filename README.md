@@ -121,7 +121,7 @@ fragment:  requireActivity().inAppReview()
 ````
 **How to use ADS Mediation**
 
-       <strong>add these maven url's in settings.gradle</strong>
+       // add these maven url's in settings.gradle
         dependencyResolutionManagement {
                   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
@@ -130,7 +130,9 @@ fragment:  requireActivity().inAppReview()
               maven {url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")}
               maven{url = uri("https://artifact.bytedance.com/repository/pangle/")
         } } }
-
+````
+**Mediation Initialization**
+````
        AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
 
       // Open App Ad
