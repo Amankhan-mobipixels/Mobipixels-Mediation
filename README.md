@@ -17,7 +17,6 @@ dependencies: {
 ````
 **get user consent on splash or mainscreen (for European Economic Area (EEA) and the UK)**
 ````
-//if consent is true load your ad
 val consent = GDPRMessage(this)
         consent.consentMessageRequest()
         consent.getConsent{
@@ -85,11 +84,11 @@ plugins {
 After adding these dependencies Crashlytics and Firebase analytics added by default for built-in events of your app
 ````
 **How to use Firebase custom events**
-
+````
  fireEvent(this.javaClass.name) // get the name of current screen running
 ````
 **How to use Firebase Messaging**
-
+````
 // add this in menefist under application tag
      <service
             android:name="com.mobi.pixels.firebase.Messaging"
@@ -106,7 +105,7 @@ After adding these dependencies Crashlytics and Firebase analytics added by defa
 context.initializeFirebaseMessaging(subscribeToTopic)
 ````
 **How to use Remote Config**
-
+````
  InitializeRemoteConfig{
             val isInterEnabled = Firebase.remoteConfig.getBoolean("splashAd")
             val interValue = Firebase.remoteConfig.getString("splash")
@@ -115,12 +114,12 @@ context.initializeFirebaseMessaging(subscribeToTopic)
         }
 ````
 **How to use In-app review**
-
+````
 Activity:  inAppReview()
 fragment:  requireActivity().inAppReview()
 ````
 **How to use ADS Mediation**
-
+````
        // add these maven url's in settings.gradle
         dependencyResolutionManagement {
                   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -130,19 +129,17 @@ fragment:  requireActivity().inAppReview()
               maven {url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")}
               maven{url = uri("https://artifact.bytedance.com/repository/pangle/")
         } } }
-
+````
+**Ads Mediation Initialization**
+````
      AdsMediation.initialize(this, true  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
-	
-      // Open App Ad
-      class MyApplication:Application(){
-           override fun onCreate() {
-            super.onCreate()
-             InitializeOpenAd(this@MyApplication,unitId,"Splash")
-           }
-         }
-
-
-         // Interstitial AD
+````
+**How to use OpenAd**
+````
+     InitializeOpenAd(this@MyApplication,unitId,"Splash")        
+````
+**How to use Interstitial AD**
+````
 	     Interstitial.load(this,"ca-app-pub-3940256099942544/1033173712",object : AdInterstitialLoadListeners {
              override fun onLoaded() { }
              override fun onFailedToLoad(error: String) {
@@ -155,8 +152,9 @@ fragment:  requireActivity().inAppReview()
             override fun onError() {  }
             override fun onDismissed() {  }
         })
-
-    // Rewarded AD
+````
+**How to use Rewarded AD**
+````
 	        Rewarded.load(this,"123",object :AdRewardedLoadListeners{
             override fun onFailedToLoad(error: String) {
                     Log.d("sdfjkhdsf",+error)
@@ -172,8 +170,9 @@ fragment:  requireActivity().inAppReview()
             override fun onShowed() {   }
 
         })
-
-           // Native AD
+````
+**How to use Native AD**
+````
            loadOnDemandNativeAd(this, binding.nativeSmall, "ca-app-pub-3940256099942544/2247696110", NativeAdType.NativeSmall)
             .setBackgroundColor("#61C6A2FF")
             .setTextColorButton("#ffffff")
@@ -190,8 +189,9 @@ fragment:  requireActivity().inAppReview()
                 }
             })
             .load()
-
-          // Banner AD
+````
+**How to use Banner AD**
+````
           val adReference = loadOnDemandBannerAd(this,binding.banner,"ca-app-pub-3940256099942544/6300978111", BannerAdType.Banner)
             .enableShimmerEffect(true)
             .setShimmerBackgroundColor("#000000")
