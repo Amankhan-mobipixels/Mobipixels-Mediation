@@ -119,20 +119,31 @@ context.initializeFirebaseMessaging(subscribeToTopic)
 Activity:  inAppReview()
 fragment:  requireActivity().inAppReview()
 ````
-**How to use ADS**
+**How to use ADS Mediation**
 
-     Ads.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
+AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
+
+**use these maven url's in settings.gradle**
+
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")
+        }
+        maven{
+            url = uri("https://artifact.bytedance.com/repository/pangle/")
+        }
+
+    }
+}
 	
       // Open App Ad
-      class MyApplication:Application(){
-           override fun onCreate() {
-            super.onCreate()
-             InitializeOpenAd(this@MyApplication,unitId,"Splash")
-           }
-         }
-
-
-         // Interstitial AD
+        InitializeOpenAd(this@MyApplication,unitId,"Splash")  //splash is a screen name means openAd will not be shown on splash screen
+        
+     // Interstitial AD
 	     Interstitial.load(this,"ca-app-pub-3940256099942544/1033173712",object : AdInterstitialLoadListeners {
              override fun onLoaded() { }
              override fun onFailedToLoad(error: String) {
