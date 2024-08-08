@@ -135,10 +135,7 @@ dependencyResolutionManagement {
         }
         maven{
             url = uri("https://artifact.bytedance.com/repository/pangle/")
-        }
-
-    }
-}
+        } }}
 	
       // Open App Ad
         InitializeOpenAd(this@MyApplication,unitId,"Splash")  //splash is a screen name means openAd will not be shown on splash screen
