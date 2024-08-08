@@ -121,7 +121,7 @@ fragment:  requireActivity().inAppReview()
 ````
 **How to use ADS Mediation**
 
-       //use these maven url's in settings.gradle
+       **add these maven url's in settings.gradle**
         dependencyResolutionManagement {
                   repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
               repositories {
