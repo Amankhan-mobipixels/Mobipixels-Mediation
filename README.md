@@ -24,12 +24,14 @@ val consent = GDPRMessage(this)
              //load ad here
             }
 ````
-**How to use In-app updates**
+**In-app updates**
 ````
  updateApp(UpdateType.Force){ onCancel ->
             finishAffinity()
         }
-
+````
+**In-app updates with remote config**
+````
 // control in-app update with remote config you just have to pass remote config json as a string
 
     updateAppWithRemoteConfig(version)
@@ -52,7 +54,6 @@ Json example:
       "UpdateType": 1               
     }
   ]
-
 ````
 **How to use Firebase functionalities with default Crashlytics**
 ````
