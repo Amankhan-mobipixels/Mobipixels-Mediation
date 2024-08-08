@@ -85,11 +85,11 @@ plugins {
 After adding these dependencies Crashlytics and Firebase analytics added by default for built-in events of your app
 ````
 **How to use Firebase custom events**
-````
+
  fireEvent(this.javaClass.name) // get the name of current screen running
 ````
 **How to use Firebase Messaging**
-````
+
 // add this in menefist under application tag
      <service
             android:name="com.mobi.pixels.firebase.Messaging"
@@ -106,7 +106,7 @@ After adding these dependencies Crashlytics and Firebase analytics added by defa
 context.initializeFirebaseMessaging(subscribeToTopic)
 ````
 **How to use Remote Config**
-````
+
  InitializeRemoteConfig{
             val isInterEnabled = Firebase.remoteConfig.getBoolean("splashAd")
             val interValue = Firebase.remoteConfig.getString("splash")
@@ -115,7 +115,7 @@ context.initializeFirebaseMessaging(subscribeToTopic)
         }
 ````
 **How to use In-app review**
-````
+
 Activity:  inAppReview()
 fragment:  requireActivity().inAppReview()
 ````
