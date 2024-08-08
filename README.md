@@ -12,7 +12,7 @@ allprojects {
 **add dependency in module level gradle**
 ````
 dependencies: {
-         implementation 'com.github.Amankhan-mobipixels:Mobipixels-Mediation:1.0.0'
+         implementation 'com.github.Amankhan-mobipixels:Mobipixels-Mediation:1.0.1'
             }
 ````
 **get user consent on splash or mainscreen (for European Economic Area (EEA) and the UK)**
