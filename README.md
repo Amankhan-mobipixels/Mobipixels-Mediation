@@ -124,7 +124,6 @@ fragment:  requireActivity().inAppReview()
 AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
 
 **use these maven url's in settings.gradle**
-
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
     repositories {
