@@ -119,8 +119,7 @@ context.initializeFirebaseMessaging(subscribeToTopic)
 Activity:  inAppReview()
 fragment:  requireActivity().inAppReview()
 ````
-**How to use ADS Mediation**
-
+//How to use ADS Mediation
 AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
 **use these maven url's in settings.gradle**
 dependencyResolutionManagement {
