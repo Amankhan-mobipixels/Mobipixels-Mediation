@@ -1,6 +1,6 @@
 # MobiPixels
 **add maven in your project level gradle**
-````
+
 allprojects {
 	repositories {
 		...
@@ -8,25 +8,25 @@ allprojects {
 		}
 	}
 }
-````
+
 **add dependency in module level gradle**
-````
+
 dependencies:
 {
 implementation 'com.github.Amankhan-mobipixels:MobiPixels:1.0.0'
 }
-````
+
 **get user consent on splash or mainscreen (for European Economic Area (EEA) and the UK)**
-````
+
 //if consent is true load your ad
 val consent = GDPRMessage(this)
         consent.consentMessageRequest()
         consent.getConsent{
              //load ad here
             }
-````
+
 **How to use In-app updates**
-````
+
  updateApp(UpdateType.Force){ onCancel ->
             finishAffinity()
         }
@@ -54,9 +54,8 @@ Json example:
     }
   ]
 
-````
 **How to use Firebase functionalities with default Crashlytics**
-````
+
 Must add 'google-services.json' file before application run
 
 // In your root-level (project-level) Gradle file add
@@ -85,11 +84,11 @@ plugins {
 After adding these dependencies Crashlytics and Firebase analytics added by default for built-in events of your app
 ````
 **How to use Firebase custom events**
-````
+
  fireEvent(this.javaClass.name) // get the name of current screen running
 ````
 **How to use Firebase Messaging**
-````
+
 // add this in menefist under application tag
      <service
             android:name="com.mobi.pixels.firebase.Messaging"
@@ -104,21 +103,21 @@ After adding these dependencies Crashlytics and Firebase analytics added by defa
 // make sure you have post notification permission for android 13 and above
 
 context.initializeFirebaseMessaging(subscribeToTopic)
-````
+
 **How to use Remote Config**
-````
+
  InitializeRemoteConfig{
             val isInterEnabled = Firebase.remoteConfig.getBoolean("splashAd")
             val interValue = Firebase.remoteConfig.getString("splash")
             Log.d("fgjhdf", isInterEnabled.toString())
             Log.d("fgjhdf", interValue)
         }
-````
+
 **How to use In-app review**
-````
-Activity:  inAppReview()
-fragment:  requireActivity().inAppReview()
-````
+
+    Activity:  inAppReview()
+    fragment:  requireActivity().inAppReview()
+
 **How to use ADS Mediation**
 
        // add these maven url's in settings.gradle
@@ -130,11 +129,10 @@ fragment:  requireActivity().inAppReview()
               maven {url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")}
               maven{url = uri("https://artifact.bytedance.com/repository/pangle/")
         } } }
-````
 **Mediation Initialization**
-````
+
        AdsMediation.initialize(this, true)  //initialize ads in onCreate of splash screen and if you want to disable ads in app you should set value as false (by default its true) 
-````
+       
       // Open App Ad
         InitializeOpenAd(this@MyApplication,unitId,"Splash")  //splash is a screen name means openAd will not be shown on splash screen
         
