@@ -15,33 +15,27 @@ import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.google.gson.reflect.TypeToken
 import com.mobi.pixels.enums.UpdateType
+import kotlin.system.exitProcess
 
-fun Activity.updateApp(updateType: UpdateType, onCancel: ((onCancel:Boolean) -> Unit)? = null) {
-
-    val type = if (updateType == UpdateType.Flexible) 0 else 1
+fun Activity.updateApp(updateType: UpdateType) {
     val appUpdateManager = AppUpdateManagerFactory.create(this)
 
+    val type = if (updateType == UpdateType.Flexible) 0 else 1
     val installStateUpdatedListener = InstallStateUpdatedListener { state ->
         if (state.installStatus() == InstallStatus.DOWNLOADED) {
             showCompleteUpdate()
         }
         if (state.installStatus() == InstallStatus.CANCELED) {
-            onCancel?.invoke(true)
-       }
-    }
+            if (type == AppUpdateType.IMMEDIATE) {
+                finishAffinity();
+                exitProcess(0); } } }
 
     appUpdateManager.appUpdateInfo.addOnSuccessListener { result ->
         if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
             try {
-                if (type == AppUpdateType.FLEXIBLE) {
-                    appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, this, 100)
-                } else if (type == AppUpdateType.IMMEDIATE) {
-                    appUpdateManager?.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, 100)
-                }
-            } catch (e: IntentSender.SendIntentException) {
-                e.printStackTrace()
-            }
-        }
+                if (type == AppUpdateType.FLEXIBLE) { appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, this, 100) }
+                else if (type == AppUpdateType.IMMEDIATE) { appUpdateManager?.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, 100)}
+            } catch (e: IntentSender.SendIntentException) { e.printStackTrace() } }
         appUpdateManager.registerListener(installStateUpdatedListener)
     }
 
@@ -50,15 +44,18 @@ fun Activity.updateApp(updateType: UpdateType, onCancel: ((onCancel:Boolean) -> 
 fun Activity.updateAppWithRemoteConfig(jsonString: String) {
 
     val value = fetchDataForCurrentVersion(jsonString)
-    Log.d("34ffd",value.toString())
-    if (value != "-1"){
+    Log.d("34ffd", value.toString())
+    if (value != "-1") {
         val appUpdateManager = AppUpdateManagerFactory.create(this)
         val installStateUpdatedListener = InstallStateUpdatedListener { state ->
             if (state.installStatus() == InstallStatus.DOWNLOADED) {
                 showCompleteUpdate()
             }
             if (state.installStatus() == InstallStatus.CANCELED) {
-                if (value=="1") finishAffinity()
+                if (value == "1") {
+                    finishAffinity();
+                    exitProcess(0);
+                }
             }
         }
 
@@ -66,9 +63,19 @@ fun Activity.updateAppWithRemoteConfig(jsonString: String) {
             if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
                 try {
                     if (value == "0") {
-                        appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, this, 100)
+                        appUpdateManager.startUpdateFlowForResult(
+                            result,
+                            AppUpdateType.FLEXIBLE,
+                            this,
+                            100
+                        )
                     } else if (value == "1") {
-                        appUpdateManager?.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, 100)
+                        appUpdateManager?.startUpdateFlowForResult(
+                            result,
+                            AppUpdateType.IMMEDIATE,
+                            this,
+                            100
+                        )
                     }
                 } catch (e: IntentSender.SendIntentException) {
                     e.printStackTrace()

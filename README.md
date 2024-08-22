@@ -12,7 +12,7 @@ allprojects {
 **add dependency in module level gradle**
 ````
 dependencies: {
-         implementation 'com.github.Amankhan-mobipixels:Mobipixels-Mediation:1.0.1'
+         implementation 'com.github.Amankhan-mobipixels:Mobipixels-Mediation:1.0.2'
             }
 ````
 **How to use In-app review**
@@ -81,9 +81,7 @@ context.initializeFirebaseMessaging(subscribeToTopic)
 ````
 **How to use In-app updates**
 ````
- updateApp(UpdateType.Force){ onCancel ->
-            finishAffinity()
-        }
+ updateApp(UpdateType.Force)
 ````
 **How to use In-app updates with remote config**
 ````
@@ -120,6 +118,7 @@ Json example:
               mavenCentral()
               maven {url = uri("https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea")}
               maven{url = uri("https://artifact.bytedance.com/repository/pangle/")}
+              maven {url = uri("https://android-sdk.is.com/")}
         } } }
 ````
 **Ads Mediation Initialization**

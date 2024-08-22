@@ -4,8 +4,10 @@ import android.app.Activity
 import android.util.Log
 import com.applovin.sdk.AppLovinPrivacySettings
 import com.google.android.gms.ads.MobileAds
+import com.ironsource.mediationsdk.IronSource
 import com.mbridge.msdk.MBridgeConstans
 import com.mbridge.msdk.out.MBridgeSDKFactory
+import com.unity3d.ads.metadata.MetaData
 import com.vungle.ads.VunglePrivacySettings
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -31,6 +33,17 @@ object AdsMediation {
             var sdk = MBridgeSDKFactory.getMBridgeSDK()
             sdk.setConsentStatus(ctx, MBridgeConstans.IS_SWITCH_ON)
             sdk.setDoNotTrackStatus(false)
+
+            val gdprMetaData = MetaData(ctx)
+            gdprMetaData["gdpr.consent"] = true
+            gdprMetaData.commit()
+
+            val ccpaMetaData = MetaData(ctx)
+            ccpaMetaData["privacy.consent"] = true
+            ccpaMetaData.commit()
+
+            IronSource.setConsent(true)
+            IronSource.setMetaData("do_not_sell", "true")
 
             MobileAds.initialize(ctx) { initializationStatus ->
                 val statusMap = initializationStatus.adapterStatusMap
