@@ -62,24 +62,9 @@ fun Activity.updateAppWithRemoteConfig(jsonString: String) {
         appUpdateManager.appUpdateInfo.addOnSuccessListener { result ->
             if (result.updateAvailability() == UpdateAvailability.UPDATE_AVAILABLE) {
                 try {
-                    if (value == "0") {
-                        appUpdateManager.startUpdateFlowForResult(
-                            result,
-                            AppUpdateType.FLEXIBLE,
-                            this,
-                            100
-                        )
-                    } else if (value == "1") {
-                        appUpdateManager?.startUpdateFlowForResult(
-                            result,
-                            AppUpdateType.IMMEDIATE,
-                            this,
-                            100
-                        )
-                    }
-                } catch (e: IntentSender.SendIntentException) {
-                    e.printStackTrace()
-                }
+                    if (value == "0") { appUpdateManager.startUpdateFlowForResult(result, AppUpdateType.FLEXIBLE, this, 100)
+                    } else if (value == "1") { appUpdateManager?.startUpdateFlowForResult(result, AppUpdateType.IMMEDIATE, this, 100) }
+                } catch (e: IntentSender.SendIntentException) { e.printStackTrace() }
             }
             appUpdateManager.registerListener(installStateUpdatedListener)
         }
@@ -96,20 +81,23 @@ private fun Activity.fetchDataForCurrentVersion(jsonString: String): String? {
         val packageInfo: PackageInfo = packageManager.getPackageInfo(packageName, 0)
         val versionName = packageInfo.versionName
         // Find the matching version and return its UpdateType
-        val data = versionList.find { it.get("VersionName")?.asString == versionName }?.get("UpdateType")?.asString
-        data?: "-1"
+        val data = versionList.find { it.get("VersionName")?.asString == versionName }
+            ?.get("UpdateType")?.asString
+        data ?: "-1"
     } catch (e: PackageManager.NameNotFoundException) {
         "-1"
     }
 }
 
 private fun Activity.showCompleteUpdate() {
-    val snackBar = Snackbar.make(findViewById(android.R.id.content), "New update is ready!", Snackbar.LENGTH_INDEFINITE)
+    val snackBar = Snackbar.make(
+        findViewById(android.R.id.content),
+        "New update is ready!",
+        Snackbar.LENGTH_INDEFINITE
+    )
     snackBar.setAction("Install") {
         val appUpdateManager = AppUpdateManagerFactory.create(this)
         appUpdateManager.completeUpdate()
     }
     snackBar.show()
 }
-
-
